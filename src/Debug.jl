@@ -14,7 +14,7 @@ using Debug.AST, Debug.Meta, Debug.Analysis, Debug.Graft, Debug.Eval
 using Debug.Flow, Debug.UI
 
 # It seems that @instrument has to be exported in order not to be deleted
-export @debug, @bp, @instrument, @localscope, debug_eval, @debug_analyze, @notrap, @tofile
+export @debug, @bp, @instrument, @localscope, debug_eval, @debug_analyze, @notrap, @tofile, @terminal
 
 macro tofile(ex)
     name = tempname()*".jl"
