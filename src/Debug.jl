@@ -31,6 +31,27 @@ is_trap(node::Node) = isblocknode(parentof(node))
 macro debug(ex)
     code_debug(UI.instrument(ex))
 end
+
+macro terminal()
+    quote 
+        while true 
+        cmd = chomp(readline(STDIN))
+            if cmd == "q"
+                break
+            else
+                try
+                    str = Base.shell_split(cmd) 
+                    cmd = ``
+                    append!(cmd.exec,str)
+                    run(cmd)
+                catch e
+                    println(e)
+                end
+            end
+        end
+    end
+end
+
 never_trap(ex) = false
 macro debug_analyze(ex)
     code_debug(instrument(never_trap, nothing, ex))
